@@ -1,0 +1,14 @@
+version: '3.7'
+services: 
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    # command:  python web_demo.py --server-port 8080 --server-name 0.0.0.0 -c /data/shared/Qwen/Qwen-Chat/ --checkpoint-path "Qwen/Qwen-7B-Chat"
+    command:  python openai_api.py --server-port 8080 --server-name 0.0.0.0 -c /data/shared/Qwen/Qwen-Chat/ --checkpoint-path "Qwen/Qwen-1_8B-Chat"
+    volumes:
+      - ./.cache/:/root/.cache/
+      - ./:/data/shared/Qwen/
+    # environment:
+    #   - FLASK_ENV=development
+    #   - FLASK_APP=app.py
